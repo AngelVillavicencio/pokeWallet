@@ -10,23 +10,23 @@
   flex-wrap: wrap;
 }
 
-.Welcome-text {
+.WelcomeText {
   padding: 20px 50px;
 }
 
-.Welcome-text h1 {
+.WelcomeText h1 {
   font-size: 55px;
   font-weight: 400;
   color: #ffffff;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.Welcome-text h1 span {
+.WelcomeText h1 span {
   font-size: 75px;
   font-weight: 700;
 }
 
-.Welcome-text p {
+.WelcomeText p {
   color: #ffffff;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   text-align: right;
@@ -34,37 +34,37 @@
   font-size: 20px;
 }
 @media (max-width: 1024px) {
-  .Welcome-text {
+  .WelcomeText {
     padding: 20px 0px;
   }
-  .Welcome-text h1 {
+  .WelcomeText h1 {
     font-size: 48px;
   }
-  .Welcome-text h1 span {
+  .WelcomeText h1 span {
     font-size: 68px;
     font-weight: 700;
   }
 
-  .Welcome-text p {
+  .WelcomeText p {
     font-size: 18px;
     padding: 20px 0px;
   }
 }
 
 @media (max-width: 768px) {
-  .Welcome-text {
+  .WelcomeText {
     padding: 20px 0px;
     margin-top: 85px;
   }
-  .Welcome-text h1 {
+  .WelcomeText h1 {
     font-size: 30px;
   }
-  .Welcome-text h1 span {
+  .WelcomeText h1 span {
     font-size: 45px;
     font-weight: 700;
   }
 
-  .Welcome-text p {
+  .WelcomeText p {
     font-size: 10px;
     padding: 20px 0px;
   }

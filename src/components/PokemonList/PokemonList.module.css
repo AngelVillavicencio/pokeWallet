@@ -1,0 +1,18 @@
+.PokemonList {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 30px 30px 0px 0px;
+  padding: 0px 15px;
+}
+
+@media (max-width: 768px) {
+  .PokemonList {
+    width: 95%;
+    border-radius: 25px 25px 0px 0px;
+    padding: 0px;
+  }
+}

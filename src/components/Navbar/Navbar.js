@@ -1,25 +1,30 @@
-import React, { useEffect } from "react";
-import "./Navbar.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import styles from "./Navbar.module.css";
+import { Link } from "react-router-dom";
+import UserContext from "../../context/User/UserContext";
 
 const Navbar = (props) => {
-  console.log(props);
-
+  const userContext = useContext(UserContext);
+  const [state, setState] = useState(false);
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/")
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    setState(userContext.logged);
   }, []);
-
   return (
-    <div className="Navbar">
-      <div className="Navbar-container">
+    <div className={styles.Navbar}>
+      <div className={styles["Navbar-container"]}>
         <div>
-          <p className="txt-logo-navbar">PokeWallet</p>
+          <p className={styles["txt-logo-navbar"]}>PokeWallet</p>
         </div>
-        <div className="btns-navbar">
-          <button>All Pokemons</button>
-          <button>Log In</button>
+        <div className={styles["btns-navbar"]}>
+          <Link to="/">All Pokemons</Link>
+          {state ? (
+            <>
+              <Link to="/myPokemons">My Pokemons</Link>
+              <Link to="/">Log Out</Link>
+            </>
+          ) : (
+            <Link to="/logIn">Log In</Link>
+          )}
         </div>
       </div>
     </div>

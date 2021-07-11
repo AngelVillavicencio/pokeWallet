@@ -1,0 +1,31 @@
+.Card {
+  background-color: aliceblue;
+  width: 280px;
+  height: 340px;
+  margin: 20px;
+  border-radius: 27px;
+  overflow: hidden;
+}
+
+.Card-image {
+  height: 50%;
+  width: 100%;
+  object-fit: contain;
+}
+.Card-image img {
+  height: 50%;
+  width: 100%;
+  object-fit: contain;
+}
+.Card-detail {
+  background-color: #006875;
+  height: 50%;
+  border-radius: 55px 55px 0px 0px;
+  text-align: center;
+  padding-top: 25px;
+}
+
+.Card-detail a {
+  color: #fff;
+  text-decoration: none;
+}

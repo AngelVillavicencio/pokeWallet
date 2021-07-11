@@ -1,0 +1,29 @@
+.SearchBar {
+  background-color: aliceblue;
+  width: 500px;
+  height: 35px;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 27px;
+  display: flex;
+  align-items: center;
+}
+
+.SearchBar input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 85%;
+  padding: 15px;
+}
+
+.SearchBar span {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .SearchBar {
+    width: 300px;
+    height: 25px;
+  }
+}
