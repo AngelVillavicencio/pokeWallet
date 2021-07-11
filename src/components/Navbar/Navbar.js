@@ -1,34 +1,64 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
-import UserContext from "../../context/User/UserContext";
+import { Link, withRouter } from "react-router-dom";
+//import context
+import { Auth } from "../../context/authContext";
+//import firebase
+import firebase from "../../firebase/config";
 
 const Navbar = (props) => {
-  const userContext = useContext(UserContext);
-  const [state, setState] = useState(false);
+  const [userState, setUserState] = useState(null);
+  const [userEmail, setUserEmail] = useState("");
+
+  const { state, dispatch } = React.useContext(Auth);
+
   useEffect(() => {
-    setState(userContext.logged);
-  }, []);
+    firebase.getUserState().then((user) => {
+      if (user) {
+        setUserState(user);
+        setUserEmail(user.email);
+      }
+    });
+  });
+
+  const logout = () => {
+    firebase.logout();
+    setUserState(null);
+    setUserEmail("");
+    props.history.replace("/login");
+    return dispatch({
+      type: "LOGOUT",
+      payload: {},
+    });
+  };
+
+  let buttons;
+  if (userState != null || state.user.hasOwnProperty("user")) {
+    buttons = (
+      <React.Fragment>
+        <Link to="/">All Pokemons</Link>
+        <Link to="/myPokemons">My Pokemons</Link>
+        <Link onClick={logout}>Log Out</Link>
+      </React.Fragment>
+    );
+  } else {
+    buttons = (
+      <React.Fragment>
+        <Link to="/">All Pokemons</Link>
+        <Link to="/logIn">Log In</Link>
+      </React.Fragment>
+    );
+  }
   return (
     <div className={styles.Navbar}>
       <div className={styles["Navbar-container"]}>
         <div>
           <p className={styles["txt-logo-navbar"]}>PokeWallet</p>
         </div>
-        <div className={styles["btns-navbar"]}>
-          <Link to="/">All Pokemons</Link>
-          {state ? (
-            <>
-              <Link to="/myPokemons">My Pokemons</Link>
-              <Link to="/">Log Out</Link>
-            </>
-          ) : (
-            <Link to="/logIn">Log In</Link>
-          )}
-        </div>
+        <div className={styles["btns-navbar"]}>{buttons}</div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

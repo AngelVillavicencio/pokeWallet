@@ -69,3 +69,22 @@
     padding: 20px 0px;
   }
 }
+
+@media (max-width: 425px) {
+  .WelcomeText {
+    padding: 0px 0px;
+    margin-top: 85px;
+  }
+  .WelcomeText h1 {
+    font-size: 30px;
+  }
+  .WelcomeText h1 span {
+    font-size: 45px;
+    font-weight: 700;
+  }
+
+  .WelcomeText p {
+    font-size: 10px;
+    padding: 20px 0px;
+  }
+}

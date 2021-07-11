@@ -6,8 +6,12 @@ const FormLogin = ({
   setEmail,
   password,
   setPassword,
-  handleSignUp,
+  handleLogIn,
+  handleSignIn,
+  hasaccount,
+  setHasaccount,
 }) => {
+  console.log(handleSignIn);
   return (
     <div className={styles.FormLogin}>
       <div>
@@ -27,9 +31,21 @@ const FormLogin = ({
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button className={styles.btnLogIn} onClick={handleSignUp}>
-          Log In
+        <button
+          className={styles.btnLogIn}
+          onClick={hasaccount ? handleLogIn : handleSignIn}
+        >
+          {hasaccount ? "Log In" : "Sign In"}
         </button>
+        <p>
+          {hasaccount ? "¿No tienes una cuenta?" : "¿Ya tienes una cuenta?"}
+          <strong
+            style={{ cursor: "pointer" }}
+            onClick={() => setHasaccount(!hasaccount)}
+          >
+            {!hasaccount ? "Ingresa" : "Registrate"}
+          </strong>
+        </p>
       </div>
     </div>
   );

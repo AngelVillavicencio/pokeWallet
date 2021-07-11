@@ -1,17 +1,59 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import styles from "./Login.module.css";
 import FormLogin from "../../components/FormLogin/FormLogin";
-
-import UserContext from "../../context/User/UserContext";
-
+import { Auth } from "../../context/authContext";
+import firebase from "../../firebase/config";
 const Login = () => {
-  const userContext = useContext(UserContext);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSignUp = () => {
-    userContext.handleLogin(email, password);
+
+  /// tiene una cuenta
+  const [hasaccount, setHasaccount] = useState(true);
+
+  // falta entender
+  const [routeRedirect, setRouteRedirect] = useState(false);
+  const { state, dispatch } = React.useContext(Auth);
+
+  //function login
+
+  const login = async (e) => {
+    e.preventDefault();
+    let response = await firebase.login(email, password);
+    if (response.hasOwnProperty("message")) {
+      console.log(response.message);
+    } else {
+      setRouteRedirect(true);
+      return dispatch({
+        type: "LOGIN",
+        payload: response.user,
+      });
+    }
   };
+
+  const signin = async (e) => {
+    e.preventDefault();
+
+    console.log(state);
+
+    let response = await firebase.signin(email, password);
+
+    if (response.hasOwnProperty("message")) {
+      console.log(response.message);
+    } else {
+      console.log(response.user);
+      setRouteRedirect(true);
+      return dispatch({
+        type: "SIGNIN",
+        payload: response.user,
+      });
+    }
+  };
+
+  const redirect = routeRedirect;
+  if (redirect) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={styles.Login}>
@@ -28,7 +70,10 @@ const Login = () => {
         setEmail={setEmail}
         password={password}
         setPassword={setPassword}
-        handleSignUp={handleSignUp}
+        handleLogIn={login}
+        handleSignIn={signin}
+        hasaccount={hasaccount}
+        setHasaccount={setHasaccount}
       ></FormLogin>
     </div>
   );
