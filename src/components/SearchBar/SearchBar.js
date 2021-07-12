@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SearchBar.module.css";
 import SearchIcon from "@material-ui/icons/Search";
-const SearchBar = ({ searchTerm, setSearchTerm }) => {
+const SearchBar = ({ searchTerm, setSearchTerm, searching }) => {
   return (
     <div className={styles.SearchBar}>
       <input
@@ -9,6 +9,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
         placeholder="Busca por nombre"
         onChange={(e) => {
           setSearchTerm(e.target.value);
+          searching();
         }}
       ></input>
       <span>

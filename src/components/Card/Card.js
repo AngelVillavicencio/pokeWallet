@@ -67,8 +67,8 @@ const Card = ({ pokemon, history }) => {
           {pokemon.name.toUpperCase()}
         </h2>
         <span>
-          <p>Height: {pokemon.height}</p>
-          <p>Weight: {pokemon.weight}</p>
+          <p>Altura: {pokemon.height} cm</p>
+          <p>Peso: {pokemon.weight} kg</p>
         </span>
         <button
           onClick={() =>

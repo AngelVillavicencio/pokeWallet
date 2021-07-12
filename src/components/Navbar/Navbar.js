@@ -36,16 +36,16 @@ const Navbar = (props) => {
   if (userState != null || state.user.hasOwnProperty("user")) {
     buttons = (
       <React.Fragment>
-        <Link to="/">All Pokemons</Link>
-        <Link to="/myPokemons">My Pokemons</Link>
-        <Link onClick={logout}>Log Out</Link>
+        <Link to="/">Pokemons</Link>
+        <Link to="/myPokemons">Mis Pokemons</Link>
+        <Link onClick={logout}>Salir</Link>
       </React.Fragment>
     );
   } else {
     buttons = (
       <React.Fragment>
-        <Link to="/">All Pokemons</Link>
-        <Link to="/logIn">Log In</Link>
+        <Link to="/">Pokemons</Link>
+        <Link to="/logIn">Ingresar</Link>
       </React.Fragment>
     );
   }

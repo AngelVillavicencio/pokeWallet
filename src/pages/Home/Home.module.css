@@ -10,6 +10,14 @@
   align-items: center;
 }
 
+.gifloading {
+  background-image: url("../../assets/images/loading-pikachu.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 150px;
+}
 .btns {
   width: 120px;
   display: flex;

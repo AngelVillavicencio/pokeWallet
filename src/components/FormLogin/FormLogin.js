@@ -27,7 +27,7 @@ const FormLogin = ({
           type="password"
           id="password"
           name="password"
-          placeholder="password"
+          placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
@@ -35,9 +35,14 @@ const FormLogin = ({
           className={styles.btnLogIn}
           onClick={hasaccount ? handleLogIn : handleSignIn}
         >
-          {hasaccount ? "Log In" : "Sign In"}
+          {hasaccount ? "Ingresar" : "Registrarse"}
         </button>
-        <p>
+        <p
+          style={{
+            color: "black",
+            margin: "5px 0px",
+          }}
+        >
           {hasaccount ? "¿No tienes una cuenta?" : "¿Ya tienes una cuenta?"}
           <strong
             style={{ cursor: "pointer", textDecoration: "underline" }}

@@ -22,6 +22,7 @@ const Login = () => {
     let response = await firebase.login(email, password);
     if (response.hasOwnProperty("message")) {
       console.log(response.message);
+      alert("Has colocado mal algo o no existe tu usuario");
     } else {
       setRouteRedirect(true);
       return dispatch({
@@ -40,8 +41,10 @@ const Login = () => {
 
     if (response.hasOwnProperty("message")) {
       console.log(response.message);
+      alert(response.message);
     } else {
       console.log(response.user);
+      alert("Ya te encuentras registrado");
       setRouteRedirect(true);
       return dispatch({
         type: "SIGNIN",

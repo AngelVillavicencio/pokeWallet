@@ -30,11 +30,20 @@ const MyPokemons = () => {
   return (
     <div className={styles.MyPokemons}>
       {loading ? (
-        <p>cargando...</p>
+        <>
+          <div className={styles.gifloading}></div>
+          <h1 style={{ textAlign: "center" }}>Cargando...</h1>
+        </>
       ) : (
-        <div>
-          <PokemonList list={Pokemon.pokemons}></PokemonList>
-        </div>
+        <>
+          {Pokemon.pokemons ? (
+            <PokemonList list={Pokemon.pokemons}></PokemonList>
+          ) : (
+            <h1 style={{ textAlign: "center" }}>
+              No Hay Pokemons aún, agrega algunos a tu lista :)
+            </h1>
+          )}
+        </>
       )}
     </div>
   );
