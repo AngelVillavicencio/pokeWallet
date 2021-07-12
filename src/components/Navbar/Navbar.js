@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
-import { Link, withRouter } from "react-router-dom";
+import { useHistory, Link, withRouter } from "react-router-dom";
 //import context
 import { Auth } from "../../context/authContext";
 //import firebase
@@ -11,7 +11,15 @@ const Navbar = (props) => {
   const [userEmail, setUserEmail] = useState("");
 
   const { state, dispatch } = React.useContext(Auth);
+  let history = useHistory();
+  console.log(history);
+  const pathname = history.location.pathname;
+  console.log(pathname);
 
+  const styleBtn = {
+    backgroundColor: "rgba(196, 196, 196, 0.41)",
+    color: "white",
+  };
   useEffect(() => {
     firebase.getUserState().then((user) => {
       if (user) {
@@ -36,16 +44,27 @@ const Navbar = (props) => {
   if (userState != null || state.user.hasOwnProperty("user")) {
     buttons = (
       <React.Fragment>
-        <Link to="/">Pokemons</Link>
-        <Link to="/myPokemons">Mis Pokemons</Link>
+        <Link style={pathname == "/" ? styleBtn : {}} to="/">
+          Pokemons
+        </Link>
+        <Link
+          style={pathname == "/myPokemons" ? styleBtn : {}}
+          to="/myPokemons"
+        >
+          Mis Pokemons
+        </Link>
         <Link onClick={logout}>Salir</Link>
       </React.Fragment>
     );
   } else {
     buttons = (
       <React.Fragment>
-        <Link to="/">Pokemons</Link>
-        <Link to="/logIn">Ingresar</Link>
+        <Link style={pathname == "/" ? styleBtn : {}} to="/">
+          Pokemons
+        </Link>
+        <Link style={pathname == "/login" ? styleBtn : {}} to="/login">
+          Ingresar
+        </Link>
       </React.Fragment>
     );
   }

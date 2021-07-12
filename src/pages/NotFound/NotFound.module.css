@@ -6,7 +6,7 @@
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -14,4 +14,13 @@
   color: rgb(0, 0, 0);
   font-size: 50px;
   font-weight: 700;
+}
+
+.gifloading {
+  background-image: url("../../assets/images/notFound.gif");
+  background-position: center;
+  background-repeat: not-repeat;
+  background-size: contain;
+  width: 200px;
+  height: 150px;
 }

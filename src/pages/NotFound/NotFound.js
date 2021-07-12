@@ -1,9 +1,10 @@
 import React from "react";
-import "./NotFound.css";
+import styles from "./NotFound.module.css";
 const NotFound = () => {
   return (
-    <div className="NotFound">
-      <p>ERROR 404 : PAGE NOT FOUND</p>
+    <div className={styles.NotFound}>
+      <div className={styles.gifloading}></div>
+      <p style={{ textAlign: "center" }}>ERROR 404 : PAGE NOT FOUND</p>
     </div>
   );
 };

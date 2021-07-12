@@ -6,10 +6,11 @@ import { Auth } from "../../context/authContext";
 import { Pokemons } from "../../context/pokemonsContext";
 
 const MyPokemons = () => {
+  const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
   const { state, dispatch } = React.useContext(Auth);
   const { Pokemon, Dispatch } = React.useContext(Pokemons);
-  const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -17,6 +18,8 @@ const MyPokemons = () => {
         console.log(pokemonsArray);
         //setList(pokemonsArray);
         setLoading(false);
+        setList(pokemonsArray);
+        console.log("useEffectMyPokemons");
         return Dispatch({
           type: "FETCH_POKEMONS",
           payload: pokemonsArray,
@@ -27,22 +30,32 @@ const MyPokemons = () => {
     }
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.MyPokemons}>
+        <div className={styles.gifloading}></div>
+        <h1 style={{ textAlign: "center" }}>Cargando...</h1>
+      </div>
+    );
+  }
+
+  /*if (Pokemon.pokemons.length == 0) {
+    return (
+      <h1 style={{ textAlign: "center" }}>
+        No Hay Pokemons aún, agrega algunos a tu lista :)
+      </h1>
+    );
+  }*/
   return (
     <div className={styles.MyPokemons}>
-      {loading ? (
-        <>
-          <div className={styles.gifloading}></div>
-          <h1 style={{ textAlign: "center" }}>Cargando...</h1>
-        </>
+      {list.length ? (
+        <PokemonList list={list}></PokemonList>
       ) : (
         <>
-          {Pokemon.pokemons ? (
-            <PokemonList list={Pokemon.pokemons}></PokemonList>
-          ) : (
-            <h1 style={{ textAlign: "center" }}>
-              No Hay Pokemons aún, agrega algunos a tu lista :)
-            </h1>
-          )}
+          <h1 style={{ textAlign: "center" }}>
+            No Hay Pokemons aún, agrega algunos a tu lista :)
+          </h1>
         </>
       )}
     </div>
