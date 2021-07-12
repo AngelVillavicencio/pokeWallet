@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./PokeDetail.module.css";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
+import { Pokemons } from "../../context/pokemonsContext";
+import { Auth } from "../../context/authContext";
 
 const PokeDetail = ({ location }) => {
   let history = useHistory();
@@ -9,6 +11,10 @@ const PokeDetail = ({ location }) => {
   const pathname = history.location.pathname;
   console.log(pathname);
   //console.log(location);
+
+  const { savePokemon, deletePokemonOfMyList } = React.useContext(Pokemons);
+  const { state, dispatch } = React.useContext(Auth);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,15 +38,17 @@ const PokeDetail = ({ location }) => {
               <h2>{detail.name.toUpperCase()}</h2>
               <h4>Caracteristicas</h4>
               <span>
-                <p>Height:{detail.height} </p>
-                <p>Weight:{detail.weight} </p>
+                <p>Altura:{detail.height} m </p>
+                <p>Peso:{detail.weight} kg </p>
               </span>
-              <button>Agregar a mi lista</button>
+              <button onClick={() => savePokemon(state.user.uid, detail)}>
+                Agregar a mi lista
+              </button>
             </div>
           </>
         )}
       </div>
-      <Link to="/">Regresar</Link>
+      <Link onClick={() => history.goBack()}>Regresar</Link>
     </div>
   );
 };

@@ -3,6 +3,9 @@ export const pokemons = (state, action) => {
     case "FETCH_POKEMONS":
       return { ...state, pokemons: action.payload };
 
+    case "REMOVE_POKEMONS":
+      return { ...state, pokemons: action.payload };
+
     default:
       return state;
   }

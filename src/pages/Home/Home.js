@@ -17,17 +17,6 @@ const Home = () => {
   //search bar
   const [searchTerm, setSearchTerm] = useState("");
 
-  const saveAllPokemons = async () => {
-    let res = await getAllPokemon(initialURL + "?limit=100&offset=200");
-    let _pokemonData = await Promise.all(
-      res.results.map(async (pokemon) => {
-        let pokemonRecord = await getPokemon(pokemon);
-        return pokemonRecord;
-      })
-    );
-    setAllPokemons(_pokemonData);
-  };
-
   const searching = () => {
     const newList = list.filter((value, key) => {
       if (value.name.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -37,19 +26,11 @@ const Home = () => {
   };
   /// GETTER POKEMON
   async function getAllPokemon(url) {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => resolve(data));
-    });
+    return fetch(url).then((res) => res.json());
   }
 
   async function getPokemon({ url }) {
-    return new Promise((resolve, reject) => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => resolve(data));
-    });
+    return fetch(url).then((res) => res.json());
   }
   //saveAllPokemons();
   useEffect(() => {
@@ -95,7 +76,7 @@ const Home = () => {
     );
     setList(_pokemonData);
   };
-
+  console.log(list);
   return (
     <div className={styles.Home}>
       <SearchBar

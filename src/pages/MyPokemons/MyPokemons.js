@@ -7,29 +7,21 @@ import { Pokemons } from "../../context/pokemonsContext";
 
 const MyPokemons = () => {
   const [loading, setLoading] = useState(true);
-  const [list, setList] = useState([]);
   const { state, dispatch } = React.useContext(Auth);
-  const { Pokemon, Dispatch } = React.useContext(Pokemons);
-  
+  const { Pokemon, Dispatch, getpokemons } = React.useContext(Pokemons);
+
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const pokemonsArray = await firebase.getpokemons(state.user.uid);
-        console.log(pokemonsArray);
-        //setList(pokemonsArray);
-        setLoading(false);
-        setList(pokemonsArray);
-        console.log("useEffectMyPokemons");
-        return Dispatch({
-          type: "FETCH_POKEMONS",
-          payload: pokemonsArray,
-        });
-      } catch (err) {
-        console.log(err.message);
-      }
+    try {
+      getpokemons(state.user.uid);
+      //debugger;
+    } catch (err) {
+      console.log(err.message);
     }
-    fetchData();
   }, []);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [Pokemon.pokemons]);
 
   if (loading) {
     return (
@@ -40,17 +32,10 @@ const MyPokemons = () => {
     );
   }
 
-  /*if (Pokemon.pokemons.length == 0) {
-    return (
-      <h1 style={{ textAlign: "center" }}>
-        No Hay Pokemons aún, agrega algunos a tu lista :)
-      </h1>
-    );
-  }*/
   return (
     <div className={styles.MyPokemons}>
-      {list.length ? (
-        <PokemonList list={list}></PokemonList>
+      {Pokemon.pokemons.length > 0 ? (
+        <PokemonList list={Pokemon.pokemons}></PokemonList>
       ) : (
         <>
           <h1 style={{ textAlign: "center" }}>

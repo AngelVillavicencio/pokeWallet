@@ -81,30 +81,7 @@ firebase.firestore().collection("users").doc(cred.user.uid).set({
     return pokemonArray;
   }*/
 
-  async savePokemon(uid, pokemon) {
-    const { name } = pokemon;
-    const id = pokemon.id;
-
-    firebase.database().ref(`mypokemons/${uid}/${id}`).set(pokemon);
-  }
-
-  async getpokemons(uid) {
-    let myPokemons = [];
-    firebase
-      .database()
-      .ref(`mypokemons/${uid}`)
-      .on("value", (snapshot) => {
-        snapshot.forEach((snap) => {
-          myPokemons.push(snap.val());
-        });
-      });
-    console.log(myPokemons);
-    return myPokemons;
-  }
-
-  async deletePokemonOfMyList(uid, id) {
-    firebase.database().ref(`mypokemons/${uid}/${id}`).remove();
-  }
+  
 }
 
 export default new Firebase();

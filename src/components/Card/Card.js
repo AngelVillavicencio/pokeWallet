@@ -10,7 +10,8 @@ import { Pokemons } from "../../context/pokemonsContext";
 
 const Card = ({ pokemon, history }) => {
   const { state, dispatch } = React.useContext(Auth);
-  const { Pokemon, Dispatch } = React.useContext(Pokemons);
+  const { Pokemon, Dispatch, savePokemon, deletePokemonOfMyList } =
+    React.useContext(Pokemons);
 
   console.log(history.location.pathname);
   const path = history.location.pathname;
@@ -22,27 +23,15 @@ const Card = ({ pokemon, history }) => {
     });
   };
 
-  async function savePokemon(uid, pokemon) {
-    let response = await firebase.savePokemon(uid, pokemon);
+  async function guardarPokemon(uid, pokemon) {
+    savePokemon(uid, pokemon);
     alert("Se agregó el pokemon");
+    //debugger;
   }
 
   async function eliminatePokemon(uid, id) {
-    let response = await firebase.deletePokemonOfMyList(uid, id);
+    deletePokemonOfMyList(uid, id);
     alert("Se eliminó un pokemon");
-    async function fetchData() {
-      try {
-        const pokemonsArray = await firebase.getpokemons(state.user.uid);
-        console.log(pokemonsArray);
-        return Dispatch({
-          type: "FETCH_POKEMONS",
-          payload: pokemonsArray,
-        });
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-    fetchData();
   }
 
   useEffect(() => {
@@ -75,7 +64,7 @@ const Card = ({ pokemon, history }) => {
             btnstate
               ? eliminatePokemon(state.user.uid, pokemon.id)
               : state.user.uid
-              ? savePokemon(state.user.uid, pokemon)
+              ? guardarPokemon(state.user.uid, pokemon)
               : alert("Inicia sesión primero")
           }
         >
