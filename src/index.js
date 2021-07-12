@@ -5,11 +5,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./context/authContext";
 import { BrowserRouter } from "react-router-dom";
+import { PokemonsProvider } from "./context/pokemonsContext";
 
 ReactDOM.render(
   <BrowserRouter>
     <AuthProvider>
-      <App />
+      <PokemonsProvider>
+        <App />
+      </PokemonsProvider>
     </AuthProvider>
   </BrowserRouter>,
   document.getElementById("root")

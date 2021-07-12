@@ -13,6 +13,9 @@ const Home = () => {
   const [nextUrl, setNextUrl] = useState("");
   const [prevUrl, setPrevUrl] = useState("");
 
+  //search bar
+  const [searchTerm, setSearchTerm] = useState("");
+
   /// GETTER POKEMON
   async function getAllPokemon(url) {
     return new Promise((resolve, reject) => {
@@ -74,17 +77,34 @@ const Home = () => {
 
   return (
     <div className={styles.Home}>
-      <SearchBar></SearchBar>
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      ></SearchBar>
       {loading ? (
         <h1 style={{ textAlign: "center" }}>Loading...</h1>
       ) : (
         <>
-          <PokemonList list={list}></PokemonList>
+          {searchTerm == "" ? (
+            <PokemonList list={list} mylist={false}></PokemonList>
+          ) : (
+            () => {
+              const newList = list.filter((pokemon) => {
+                if (
+                  pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return pokemon;
+                }
+              });
+              return <PokemonList list={newList} mylist={false}></PokemonList>;
+            }
+          )}
+
           <div className={styles.btns}>
             <button onClick={prev}>
               <KeyboardArrowLeftIcon></KeyboardArrowLeftIcon>
             </button>
-            <input type="text" value={index}></input>
+            <input type="text" value={index} readOnly></input>
             <button onClick={next}>
               <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
             </button>

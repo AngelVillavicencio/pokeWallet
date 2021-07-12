@@ -1,6 +1,7 @@
+import { UnsubscribeOutlined } from "@material-ui/icons";
 import firebase from "firebase/app";
 import "firebase/auth";
-
+import "firebase/database";
 const config = {
   apiKey: "AIzaSyAs7UBIpMDBV1vZmeN0szF367ctLJMh7kM",
   authDomain: "pokewallet-a03ef.firebaseapp.com",
@@ -14,7 +15,7 @@ class Firebase {
   constructor() {
     firebase.initializeApp(config);
     this.auth = firebase.auth();
-    //this.db = firebase.firestore();
+    this.db = firebase.database();
     //this.storage = firebase.storage();
   }
 
@@ -32,6 +33,13 @@ class Firebase {
   }
 
   //signIn
+
+  /*
+firebase.firestore().collection("users").doc(cred.user.uid).set({
+          email: cred.user.email,
+          mypokemons : []
+        });
+  */
 
   async signin(email, password) {
     const user = await firebase
@@ -64,7 +72,39 @@ class Firebase {
 
   /// DATA BASE
 
-  
+  /* getPokemons(uid) {
+    let pokemonArray = [];
+    const pokemons = await firebase.firestore().collection(uid).get();
+    pokemons.forEach((doc) => {
+      pokemonArray.push({ id: doc.id, name: doc.name });
+    });
+    return pokemonArray;
+  }*/
+
+  async savePokemon(uid, pokemon) {
+    const { name } = pokemon;
+    const id = pokemon.id;
+
+    firebase.database().ref(`mypokemons/${uid}/${id}`).set(pokemon);
+  }
+
+  async getpokemons(uid) {
+    let myPokemons = [];
+    firebase
+      .database()
+      .ref(`mypokemons/${uid}`)
+      .on("value", (snapshot) => {
+        snapshot.forEach((snap) => {
+          myPokemons.push(snap.val());
+        });
+      });
+    console.log(myPokemons);
+    return myPokemons;
+  }
+
+  async deletePokemonOfMyList(uid, id) {
+    firebase.database().ref(`mypokemons/${uid}/${id}`).remove();
+  }
 }
 
 export default new Firebase();
