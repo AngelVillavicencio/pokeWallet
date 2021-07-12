@@ -40,7 +40,7 @@ const FormLogin = ({
         <p>
           {hasaccount ? "¿No tienes una cuenta?" : "¿Ya tienes una cuenta?"}
           <strong
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", textDecoration: "underline" }}
             onClick={() => setHasaccount(!hasaccount)}
           >
             {!hasaccount ? "Ingresa" : "Registrate"}

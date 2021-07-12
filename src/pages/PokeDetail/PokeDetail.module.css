@@ -5,15 +5,75 @@
   background-position: center;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  padding-top: 105px;
+  padding-top: 120px;
 }
 
+.PokeDetail a {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  color: #006875;
+  text-decoration: none;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 150px;
+  text-align: center;
+  margin: 10px auto;
+}
 .PokeDetail_container {
-  height: 700px;
+  min-height: 350px;
   width: 800px;
   background-color: rgba(255, 255, 255, 0.712);
   border-radius: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px 0px;
+}
+
+.image-container {
+  height: 200px;
+  width: 200px;
+  background-color: #006775a1;
+  border-radius: 20px;
+}
+
+.image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.data-container {
+  height: 200px;
+  max-width: 300px;
+}
+
+.data-container button {
+  background-color: #001b45;
+  border-radius: 15px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  width: 170px;
+  margin: 0px auto;
+}
+
+.data-container h2 {
+  text-align: center;
+}
+
+@media (max-width: 425px) {
+  .PokeDetail_container {
+    width: 300px;
+    margin: 5px auto;
+    border-radius: 20px;
+    padding: 15px;
+  }
 }

@@ -17,14 +17,32 @@
   object-fit: contain;
 }
 .Card-detail {
-  background-color: #006875;
+  background-color: rgba(0, 104, 117, 0.4);
   height: 50%;
   border-radius: 55px 55px 0px 0px;
   text-align: center;
-  padding-top: 25px;
+  padding-top: 20px;
 }
 
-.Card-detail a {
-  color: #fff;
-  text-decoration: none;
+.Card-detail h2 {
+  margin: 0px;
+}
+
+.Card-detail span {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+}
+.Card-detail span p {
+  margin: 0px;
+}
+
+.Card-detail button {
+  background-color: #001b45;
+  border-radius: 15px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  color: white;
 }

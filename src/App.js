@@ -6,6 +6,8 @@ import Login from "./pages/Login/Login";
 import PokeDetail from "./pages/PokeDetail/PokeDetail";
 import NotFound from "./pages/NotFound/NotFound";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 function App() {
   return (
     <div>
@@ -14,11 +16,11 @@ function App() {
         <Route path="/" exact>
           <Home></Home>
         </Route>
-        <Route path="/pokemon/:id">
-          <PokeDetail></PokeDetail>
-        </Route>
         <Route path="/login">
           <Login></Login>
+        </Route>
+        <Route exact path="/pokemon/:id">
+          <PokeDetail></PokeDetail>
         </Route>
         <Route>
           <NotFound></NotFound>

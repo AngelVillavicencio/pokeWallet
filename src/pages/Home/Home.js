@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import PokemonList from "../../components/PokemonList/PokemonList";
-import { PermDataSettingOutlined } from "@material-ui/icons";
+import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [list, setList] = useState([]);
-
+  const [index, setIndex] = useState(1);
   const initialURL = "https://pokeapi.co/api/v2/pokemon";
   const [nextUrl, setNextUrl] = useState("");
   const [prevUrl, setPrevUrl] = useState("");
@@ -46,6 +48,7 @@ const Home = () => {
     setNextUrl(data.next);
     setPrevUrl(data.previous);
     setLoading(false);
+    setIndex((index) => index + 1);
   };
 
   const prev = async () => {
@@ -56,6 +59,7 @@ const Home = () => {
     setNextUrl(data.next);
     setPrevUrl(data.previous);
     setLoading(false);
+    setIndex((index) => index - 1);
   };
 
   const loadPokemon = async (data) => {
@@ -75,11 +79,16 @@ const Home = () => {
         <h1 style={{ textAlign: "center" }}>Loading...</h1>
       ) : (
         <>
-          <div className="btn">
-            <button onClick={prev}>Prev</button>
-            <button onClick={next}>Next</button>
-          </div>
           <PokemonList list={list}></PokemonList>
+          <div className={styles.btns}>
+            <button onClick={prev}>
+              <KeyboardArrowLeftIcon></KeyboardArrowLeftIcon>
+            </button>
+            <input type="text" value={index}></input>
+            <button onClick={next}>
+              <KeyboardArrowRightIcon></KeyboardArrowRightIcon>
+            </button>
+          </div>
         </>
       )}
     </div>

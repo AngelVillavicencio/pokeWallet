@@ -7,17 +7,19 @@
   border-radius: 27px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 
 .SearchBar input {
   border: none;
   outline: none;
   background-color: transparent;
-  width: 85%;
+  width: 90%;
   padding: 15px;
 }
 
 .SearchBar span {
+  width: 25px;
   cursor: pointer;
 }
 
