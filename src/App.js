@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import PokeDetail from "./pages/PokeDetail/PokeDetail";
+import MyPokemons from "./pages/MyPokemons/MyPokemons";
 import NotFound from "./pages/NotFound/NotFound";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/login">
           <Login></Login>
+        </Route>
+        <Route path="/mypokemons">
+          <MyPokemons></MyPokemons>
         </Route>
         <Route exact path="/pokemon/:id">
           <PokeDetail></PokeDetail>

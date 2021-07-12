@@ -61,6 +61,10 @@ class Firebase {
       this.auth.onAuthStateChanged(resolve);
     });
   }
+
+  /// DATA BASE
+
+  
 }
 
 export default new Firebase();
