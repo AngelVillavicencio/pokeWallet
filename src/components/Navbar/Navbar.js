@@ -12,9 +12,9 @@ const Navbar = (props) => {
 
   const { state, dispatch } = React.useContext(Auth);
   let history = useHistory();
-  console.log(history);
+  //console.log(history);
   const pathname = history.location.pathname;
-  console.log(pathname);
+  //console.log(pathname);
 
   const styleBtn = {
     backgroundColor: "rgba(196, 196, 196, 0.41)",

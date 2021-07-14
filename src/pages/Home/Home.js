@@ -76,7 +76,7 @@ const Home = () => {
     );
     setList(_pokemonData);
   };
-  console.log(list);
+  //console.log(list);
   return (
     <div className={styles.Home}>
       <SearchBar

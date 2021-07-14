@@ -13,7 +13,6 @@ export const PokemonsProvider = (props) => {
   async function savePokemon(uid, pokemon) {
     const { name } = pokemon;
     const id = pokemon.id;
-
     firebase.database().ref(`mypokemons/${uid}/${id}`).set(pokemon);
   }
 
@@ -36,7 +35,7 @@ export const PokemonsProvider = (props) => {
   async function deletePokemonOfMyList(uid, id) {
     firebase.database().ref(`mypokemons/${uid}/${id}`).remove();
     const pokemons = Pokemon.pokemons.filter((pokemon) => pokemon.id !== id);
-    debugger;
+    //debugger;
     Dispatch({
       type: "REMOVE_POKEMONS",
       payload: pokemons,

@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     let response = await firebase.login(email, password);
     if (response.hasOwnProperty("message")) {
-      console.log(response.message);
+      //console.log(response.message);
       alert("Has colocado mal algo o no existe tu usuario");
     } else {
       setRouteRedirect(true);
@@ -35,15 +35,14 @@ const Login = () => {
   const signin = async (e) => {
     e.preventDefault();
 
-    console.log(state);
-
+    //console.log(state);
     let response = await firebase.signin(email, password);
 
     if (response.hasOwnProperty("message")) {
-      console.log(response.message);
+      //console.log(response.message);
       alert(response.message);
     } else {
-      console.log(response.user);
+      //console.log(response.user);
       alert("Ya te encuentras registrado");
       setRouteRedirect(true);
       return dispatch({

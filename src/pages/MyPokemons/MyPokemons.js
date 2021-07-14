@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./MyPokemons.module.css";
 import PokemonList from "../../components/PokemonList/PokemonList";
-import firebase from "../../firebase/config";
 import { Auth } from "../../context/authContext";
 import { Pokemons } from "../../context/pokemonsContext";
 

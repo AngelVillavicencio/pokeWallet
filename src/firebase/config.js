@@ -1,4 +1,3 @@
-import { UnsubscribeOutlined } from "@material-ui/icons";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -16,7 +15,6 @@ class Firebase {
     firebase.initializeApp(config);
     this.auth = firebase.auth();
     this.db = firebase.database();
-    //this.storage = firebase.storage();
   }
 
   //login
@@ -33,13 +31,6 @@ class Firebase {
   }
 
   //signIn
-
-  /*
-firebase.firestore().collection("users").doc(cred.user.uid).set({
-          email: cred.user.email,
-          mypokemons : []
-        });
-  */
 
   async signin(email, password) {
     const user = await firebase
@@ -69,19 +60,6 @@ firebase.firestore().collection("users").doc(cred.user.uid).set({
       this.auth.onAuthStateChanged(resolve);
     });
   }
-
-  /// DATA BASE
-
-  /* getPokemons(uid) {
-    let pokemonArray = [];
-    const pokemons = await firebase.firestore().collection(uid).get();
-    pokemons.forEach((doc) => {
-      pokemonArray.push({ id: doc.id, name: doc.name });
-    });
-    return pokemonArray;
-  }*/
-
-  
 }
 
 export default new Firebase();
